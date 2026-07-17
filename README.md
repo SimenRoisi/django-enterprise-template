@@ -318,7 +318,10 @@ Create and maintain:
 ```
 .cursor/
     rules/
-        django-mentor.mdc
+        django-guidelines.mdc
+        engineering-principles.mdc
+        code-review.mdc
+        testing-guidelines.mdc
 
 PROJECT_CONTEXT.md
 
@@ -331,7 +334,7 @@ LESSONS.md
 
 Purpose:
 
-## django-mentor.mdc
+## engineering-principles.mdc
 
 Defines AI behavior and engineering principles.
 
