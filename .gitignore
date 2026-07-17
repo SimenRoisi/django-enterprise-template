@@ -1,0 +1,91 @@
+# -----------------------
+# Python
+# -----------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+
+# -----------------------
+# Django
+# -----------------------
+
+*.log
+
+# Local database
+*.sqlite3
+
+# Django collected static files
+staticfiles/
+
+# Media uploads
+media/
+
+
+# -----------------------
+# Environment variables
+# -----------------------
+
+.env
+.env.*
+!.env.example
+
+
+# -----------------------
+# IDE / Editors
+# -----------------------
+
+.vscode/
+.idea/
+
+# Cursor local settings
+.cursorignore
+
+
+# -----------------------
+# OS
+# -----------------------
+
+.DS_Store
+Thumbs.db
+
+
+# -----------------------
+# Node / Frontend (future)
+# -----------------------
+
+node_modules/
+dist/
+build/
+
+
+# -----------------------
+# Testing
+# -----------------------
+
+.coverage.*
+.tox/
+.nox/
+
+
+# -----------------------
+# Temporary files
+# -----------------------
+
+*.tmp
+*.temp
+*.swp
+*.swo
