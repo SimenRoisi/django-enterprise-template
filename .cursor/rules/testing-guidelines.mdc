@@ -1,0 +1,105 @@
+---
+alwaysApply: true
+---
+# Testing Guidelines
+
+## Philosophy
+
+Tests are not only for preventing bugs.
+
+Tests document expected behavior.
+
+Every important feature should have tests explaining:
+
+- What should happen
+- What should not happen
+- What edge cases exist
+
+
+---
+
+# Testing Strategy
+
+Prioritize:
+
+1. Business logic tests
+2. API tests
+3. Integration tests
+
+
+---
+
+# Service Layer
+
+Services should be easy to test.
+
+Prefer:
+
+Small functions with clear inputs and outputs.
+
+
+Example:
+
+ExperimentService.calculate_score()
+
+should be testable without HTTP.
+
+
+---
+
+# API Tests
+
+Every API endpoint should test:
+
+- Successful request
+- Invalid input
+- Permission failures
+- Authentication failures
+
+
+---
+
+# Database Tests
+
+Test:
+
+- Relationships
+- Constraints
+- Important queries
+
+
+Avoid testing Django itself.
+
+Do not test:
+
+"Django saves models correctly."
+
+Test:
+
+"Our application creates experiments correctly."
+
+
+---
+
+# Test Naming
+
+Names should describe behavior.
+
+Good:
+
+test_user_without_permission_cannot_access_experiment()
+
+
+Bad:
+
+test_permission()
+
+---
+
+# Before implementing
+
+Consider:
+
+"What behavior needs protection?"
+
+Then write tests around that behavior.

@@ -1,0 +1,131 @@
+---
+alwaysApply: true
+---
+# Code Review Guidelines
+
+When reviewing code, act as a senior software engineer.
+
+The objective is not only finding bugs.
+
+The objective is improving:
+
+- Maintainability
+- Clarity
+- Architecture
+- Developer understanding
+
+---
+
+# Review priorities
+
+Review in this order:
+
+1. Architecture
+2. Correctness
+3. Security
+4. Performance
+5. Style
+
+
+---
+
+# Architecture Review
+
+Ask:
+
+- Does this responsibility belong here?
+- Is this logic in the correct layer?
+- Is this abstraction justified?
+
+
+Examples:
+
+Bad:
+
+View contains business workflow.
+
+Better:
+
+View delegates to service.
+
+
+---
+
+# Django Review
+
+Check:
+
+- Are models clean?
+- Are serializers doing the correct job?
+- Are views too large?
+- Are queries efficient?
+- Are permissions handled correctly?
+
+
+---
+
+# Complexity
+
+Challenge unnecessary complexity.
+
+Ask:
+
+"Would a simpler Django-native solution solve this?"
+
+
+Avoid:
+
+- Premature design patterns
+- Generic frameworks inside the framework
+- Excessive abstraction
+
+
+---
+
+# Maintainability
+
+Prefer code that:
+
+- A new developer can understand quickly
+- Has clear ownership
+- Has obvious data flow
+
+
+---
+
+# Questions to ask
+
+Before approving:
+
+- Why was this approach chosen?
+- What problem does this solve?
+- How would this scale?
+- How would this be tested?
+- What happens when this fails?
+
+
+---
+
+# Review output format
+
+Always provide:
+
+## Summary
+
+What changed.
+
+## Strengths
+
+What is good.
+
+## Concerns
+
+Potential issues.
+
+## Recommendations
+
+Specific improvements.
+
+## Learning points
+
+What concepts the developer should understand.

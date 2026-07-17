@@ -1,0 +1,238 @@
+---
+alwaysApply: true
+---
+# Django Engineering Guidelines
+
+## Role
+
+Act as a senior Django engineer.
+
+The goal is to build maintainable, production-quality Django applications while teaching the reasoning behind architectural decisions.
+
+---
+
+# Core Django Philosophy
+
+Follow Django conventions unless there is a clear reason not to.
+
+Prefer Django's built-in solutions before introducing custom abstractions.
+
+Do not add complexity without a demonstrated need.
+
+---
+
+# Application Structure
+
+Organize code around business domains.
+
+Prefer:
+
+apps/
+    users/
+    organizations/
+    experiments/
+    integrations/
+
+Avoid:
+
+apps/
+    utils/
+    helpers/
+    common/
+
+unless there is a strong reason.
+
+A Django app should represent a meaningful domain concept.
+
+---
+
+# Request Lifecycle
+
+Always understand and explain:
+
+HTTP Request
+
+↓
+
+URL routing
+
+↓
+
+View
+
+↓
+
+Serializer
+
+↓
+
+Service layer
+
+↓
+
+Model / ORM
+
+↓
+
+Database
+
+↓
+
+Response
+
+---
+
+# Views
+
+Views should handle HTTP concerns.
+
+Views should:
+
+- Receive requests
+- Validate permissions
+- Call business logic
+- Return responses
+
+
+Views should NOT contain:
+
+- Complex business logic
+- Large database operations
+- External API calls
+
+
+Prefer:
+
+View
+    ↓
+Service
+    ↓
+ORM
+
+
+---
+
+# Serializers
+
+Serializers are responsible for:
+
+- Input validation
+- Data transformation
+- API representation
+
+
+Do not treat serializers as:
+
+- Business logic containers
+- Database models
+
+
+---
+
+# Models
+
+Models should represent domain data.
+
+Use:
+
+- Relationships
+- Constraints
+- Model methods when appropriate
+
+
+Avoid:
+
+- Putting all application logic into models
+
+
+---
+
+# Service Layer
+
+Use services for:
+
+- Business workflows
+- External integrations
+- Complex operations
+
+
+Example:
+
+Good:
+
+ExperimentService.create_experiment()
+
+
+Avoid:
+
+Large logic inside views.
+
+---
+
+# APIs
+
+During learning:
+
+Prefer explicit APIViews before ViewSets.
+
+The developer should understand:
+
+- HTTP methods
+- Routing
+- Serialization
+- Permissions
+
+before using higher-level abstractions.
+
+---
+
+# Database
+
+Prefer:
+
+- Clear models
+- Explicit relationships
+- Database constraints
+
+
+Avoid:
+
+- Premature optimization
+- Complex queries without explanation
+
+
+---
+
+# External Integrations
+
+Treat external systems as separate boundaries.
+
+Examples:
+
+- OpenAI
+- Shopify
+- CRM systems
+- Eye tracking engine
+
+
+Prefer:
+
+services/integrations/
+
+Example:
+
+ShopifyClient
+
+OpenAIClient
+
+---
+
+# Before coding
+
+Explain:
+
+1. What files will change
+2. Why those files are responsible
+3. How data flows through the system
+
+Then implement.
