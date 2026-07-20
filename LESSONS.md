@@ -1,6 +1,40 @@
 # Lessons Learned
 
-## First model creation (phase 2)
+## First API endpoint (Phase 3)
+
+20-07-2026
+
+Exposed `Organization` over HTTP using Django REST Framework.
+
+API request flow:
+
+```
+GET /organizations/
+  → config/urls.py
+  → apps/organizations/urls.py
+  → OrganizationListView.get()
+  → Organization.objects.all()
+  → OrganizationSerializer (many=True)
+  → Response(JSON)
+```
+
+Steps:
+
+- Added `rest_framework` to `INSTALLED_APPS` in `config/settings.py`
+- Created `OrganizationSerializer` in `serializers.py` — a `ModelSerializer` that maps model fields to JSON
+- Created `OrganizationListView` in `views.py` — an `APIView` with a `get()` method
+- Created `apps/organizations/urls.py` and mounted it in `config/urls.py` via `include()`
+- Tested with browser or curl: `http://127.0.0.1:8000/organizations/`
+
+Key details:
+
+- Class-based views (including DRF `APIView`) must use `.as_view()` in `urlpatterns` — passing the class directly causes `urls.E009`
+- `ModelSerializer` auto-generates fields from the model; `many=True` serializes a queryset
+- `manage.py shell` is for ORM queries, not HTTP requests — use browser or `curl` for API testing
+
+Not yet: POST/create, auth, permissions, service layer.
+
+## First model creation (Phase 2)
 20-07-2026
 Created `apps/organizations/`, foundation for the future multi-tenancy
 Model → database flow:
@@ -17,8 +51,9 @@ Steps:
   ```python
   from apps.organizations.models import Organization
   Organization.objects.create(name="Acme Corp", slug="acme")
+  ```
 
-Note: admin manages data; migrations + models define schema. No urls.py yet — API endpoints come in Phase 3.
+Note: admin manages data; migrations + models define schema.
 
 ## First custom app and URL routing (phase 1)
 20-07-2026
@@ -32,7 +67,7 @@ Browser → config/urls.py → apps/core/urls.py → views.health_check → Json
 
 - We created apps/core/urls.py and included the url for our /health endpoint
 after creating the health_check view function with JsonResponse as {"status": "ok"}
-- A new app needs it's url endpoint defined in config/urls.py too,
+- A new app needs its url endpoint defined in config/urls.py too,
 we added path("", include("apps.core.urls")) for this, note that the path is set in /apps/core/urls.py
 
 ## Django project initialization
